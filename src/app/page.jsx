@@ -11,6 +11,49 @@ const isMobile = () => {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
 
+const BackgroundMusic = () => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef(null)
+
+  useEffect(() => {
+    audioRef.current = new Audio("/STARGAZING.mp3")
+    audioRef.current.loop = true
+    audioRef.current.volume = 0.5
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+      }
+    }
+  }, [])
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause()
+        setIsPlaying(false)
+      } else {
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.error("Error playing audio:", err))
+      }
+    }
+  }
+
+  return (
+    <div className="fixed left-1/2 bottom-6 transform -translate-x-1/2 z-50">
+      <button
+        onClick={toggleMusic}
+        className="bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center"
+      >
+        <span className="text-2xl mr-2">{isPlaying}</span>
+        <span className="font-2xl font-bold">{isPlaying ? "playing" : "play"}</span>
+      </button>
+    </div>
+  )
+}
+
 const BoxWithEdges = ({ position }) => {
   return (
     <group position={position}>
@@ -117,7 +160,7 @@ const BoxLetter = ({ letter, position }) => {
         [1, 1, 0],
       ],
     }
-    return shapes[letter] || shapes["N"] 
+    return shapes[letter] || shapes["N"]
   }
 
   const letterShape = getLetterShape(letter)
@@ -247,6 +290,7 @@ export default function Component() {
         <Scene />
       </Canvas>
       <TelegramButton />
+      <BackgroundMusic />
     </div>
   )
 }
