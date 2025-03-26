@@ -138,6 +138,13 @@ const BoxLetter = ({ letter, position }) => {
         [1, 0, 0, 1],
         [0, 1, 1, 0],
       ],
+      O2: [
+        [0, 1, 1, 0],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [0, 1, 1, 0],
+      ],
       W: [
         [1, 0, 0, 0, 1],
         [1, 0, 0, 0, 1],
@@ -225,12 +232,12 @@ const Scene = () => {
         <BoxLetter letter="S" position={[-7, 0, 0]} />
         <BoxLetter letter="T" position={[-5, 0, 0]} />
         <BoxLetter letter="R" position={[-3, 0, 0]} />
-        <BoxLetter letter="O" position={[-2, 0, 0]} />
-        <BoxLetter letter="W" position={[1, 0, 0]} />
-        <BoxLetter letter="O" position={[4, 0, 0]} />
-        <BoxLetter letter="R" position={[7, 0, 0]} />
-        <BoxLetter letter="L" position={[9.5, 0, 0]} />
-        <BoxLetter letter="D" position={[12, 0, 0]} />
+        <BoxLetter letter="O" position={[-1, 0, 0]} />
+        <BoxLetter letter="W" position={[2, 0, 0]} />
+        <BoxLetter letter="O" position={[5, 0, 0]} />
+        <BoxLetter letter="R" position={[8, 0, 0]} />
+        <BoxLetter letter="L" position={[10.5, 0, 0]} />
+        <BoxLetter letter="D" position={[13, 0, 0]} />
       </group>
       <OrbitControls
         ref={orbitControlsRef}
